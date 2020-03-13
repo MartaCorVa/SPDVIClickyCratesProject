@@ -1,20 +1,33 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+CREATE TABLE [dbo].[Game] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [IdUser]     NVARCHAR (128) NOT NULL,
+    [DateStart]  DATETIME2 (7)  DEFAULT (getutcdate()) NOT NULL,
+    [DateStop]   DATETIME2 (7)  NULL,
+    [Difficulty] INT            NULL,
+    [Score]      INT            NULL,
+    [Duration]   INT            NULL
+);
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+CREATE TABLE [dbo].[Online] (
+    [Id]         NVARCHAR (128) NOT NULL,
+    [State]      NVARCHAR (50)  NULL,
+    [NickName]   NVARCHAR (128) NULL,
+    [Level]      NVARCHAR (128) NULL,
+    [LevelBadge] NVARCHAR (128) NULL,
+    [Image]      NVARCHAR (128) NULL
+);
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+CREATE TABLE [dbo].[Player] (
+    [Id]          NVARCHAR (128) NOT NULL,
+    [FirstName]   NVARCHAR (50)  NOT NULL,
+    [LastName]    NVARCHAR (50)  NOT NULL,
+    [NickName]    NVARCHAR (50)  NOT NULL,
+    [Email]       NVARCHAR (50)  NOT NULL,
+    [DateJoined]  DATETIME2 (7)  DEFAULT (getutcdate()) NOT NULL,
+    [DateOfBirth] DATETIME2 (7)  NOT NULL,
+    [City]        NVARCHAR (50)  NOT NULL,
+    [BlobUri]     NVARCHAR (512) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [Fk_User_ToAspNetUsers] FOREIGN KEY ([Id]) REFERENCES [dbo].[AspNetUsers] ([Id])
+);
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)# SPDVIClickyCratesProject
